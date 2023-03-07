@@ -11,10 +11,10 @@ public class FortuneWheelManager : MonoBehaviour
     public BonusFortuneWheelConfiguration[] bonusFortuneWheelConfigurations;
 
     #region Editor Validation
-    /*private void OnValidate()
+    private void OnValidate()
     {
-        CheckFortuneWheelConfigurationSettings();
-    }*/
+        //CheckFortuneWheelConfigurationSettings();
+    }
 
     private void CheckFortuneWheelConfigurationSettings()
     {

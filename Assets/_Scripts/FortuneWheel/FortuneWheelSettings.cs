@@ -23,7 +23,7 @@ public class FortuneWheelSettings : MonoBehaviour
         _aspectRatioFitter = GetComponent<AspectRatioFitter>();
         _aspectRatioFitter.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
         Texture2D fortuneWheelTexture = GetComponent<Image>().sprite.texture;
-        _aspectRatioFitter.aspectRatio = (float)fortuneWheelTexture.width / (float)fortuneWheelTexture.height;
+        _aspectRatioFitter.aspectRatio = fortuneWheelTexture.width / (float)fortuneWheelTexture.height;
     }
     #endregion
 }

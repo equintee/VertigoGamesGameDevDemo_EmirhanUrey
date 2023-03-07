@@ -630,7 +630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5b80a34816c7a4faf8de90f68e9c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGameFortuneWheelPrefab: {fileID: 0}
+  baseGameFortuneWheelPrefab: {fileID: 5984725439527099253, guid: 457d311edd6458e45b944aa4739bff22,
+    type: 3}
   baseGameFortuneWheelItems: []
   bonusFortuneWheelConfigurations: []
 --- !u!1001 &5984725439233559651
