@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 public class FortuneWheelManager : MonoBehaviour
 {
-    public FortuneWheelConfiguration[] fortuneWheelConfigurations;
+    [Header("Base Game Settings")]
+    public GameObject baseGameFortuneWheelPrefab;
+    public FortuneWheelItem[] baseGameFortuneWheelItems;
+
+    [Header("Bonus Game Settings")]
+    public BonusFortuneWheelConfiguration[] bonusFortuneWheelConfigurations;
 
     #region Editor Validation
-    private void OnValidate()
+    /*private void OnValidate()
     {
         CheckFortuneWheelConfigurationSettings();
-    }
+    }*/
 
     private void CheckFortuneWheelConfigurationSettings()
     {
         //To check if configurations are not set.
-        if (fortuneWheelConfigurations.Length == 0)
+        if (bonusFortuneWheelConfigurations.Length == 0)
         {
             Debug.LogError("Fortune Wheel Apperance list is empty");
             return;
@@ -22,15 +27,15 @@ public class FortuneWheelManager : MonoBehaviour
 
         //To check if configurations has null field.
         bool isThereNullField = false;
-        for(int i = 0; i < fortuneWheelConfigurations.Length; i++)
+        for(int i = 0; i < bonusFortuneWheelConfigurations.Length; i++)
         {
-            if (fortuneWheelConfigurations[i].fortuneWheelSettings == null)
+            if (bonusFortuneWheelConfigurations[i].bonusFortuneWheelPrefab == null)
             {
-                Debug.LogError($"Fortune Wheel Settings are not assigned at Element {i} in FortuneWheelManager script.");
+                Debug.LogError($"Fortune Wheel Prefab are not assigned at Element {i} in FortuneWheelManager script.");
                 isThereNullField = true;
             }
 
-            if(fortuneWheelConfigurations[i].apperanceFrequency <= 0)
+            if(bonusFortuneWheelConfigurations[i].apperanceFrequency <= 0)
             {
                 Debug.LogError($"Apperance frequency has to be greater than 0 at Element {i} in FortuneWheelManager script.");
                 isThereNullField = true;
@@ -47,8 +52,9 @@ public class FortuneWheelManager : MonoBehaviour
 
 
 [System.Serializable]
-public struct FortuneWheelConfiguration
+public struct BonusFortuneWheelConfiguration
 {
-    public FortuneWheelSettings fortuneWheelSettings;
+    public GameObject bonusFortuneWheelPrefab;
+    public FortuneWheelItem[] bonusFortuneWheelItems;
     public int apperanceFrequency;
 }

@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a5098ceefb72c4092f2a6d0baeefd8, type: 3}
   m_Name: Bronze
   m_EditorClassIdentifier: 
-  wheelSprite: {fileID: 0}
-  wheelStopperSprite: {fileID: 0}
-  spinButtonSprite: {fileID: 0}
+  fortuneWheelSlotTransforms: []
   cardPrefab: {fileID: 0}
   fortuneWheelItems: []
-  specialSpinEvents:
+  specialEndOfSpinEvents:
     m_PersistentCalls:
       m_Calls: []
