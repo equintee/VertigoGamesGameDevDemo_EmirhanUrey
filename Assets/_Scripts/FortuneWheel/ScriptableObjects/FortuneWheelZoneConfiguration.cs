@@ -7,7 +7,9 @@ public class FortuneWheelZoneConfiguration : ScriptableObject
 {
     public GameObject fortuneWheelPrefab;
     public GameObject rewardCardPrefab;
+
     public FortuneWheelZoneRewardConfiguration[] zoneRewards;
+    [Range(0, int.MaxValue)] public int deadZoneCount;
 
 
     #region Editor Validation
@@ -15,9 +17,16 @@ public class FortuneWheelZoneConfiguration : ScriptableObject
     {
         if (fortuneWheelPrefab == null)
             Debug.LogError($"Fortune Wheel Prefab is not assigned on {name}.");
+        else
+        {
+            FortuneWheelSettings fortuneWheelSettings = fortuneWheelPrefab.GetComponent<FortuneWheelSettings>();
+            deadZoneCount = Mathf.Clamp(deadZoneCount, 0, fortuneWheelSettings.fortuneWheelSlotTransforms.Length);
+        }
+            
 
         if (rewardCardPrefab == null)
             Debug.LogError($"Reward Card Prefab is not assigned on {name}.");
+
 
         for(int i = 0; i < zoneRewards.Length; i++)
         {
