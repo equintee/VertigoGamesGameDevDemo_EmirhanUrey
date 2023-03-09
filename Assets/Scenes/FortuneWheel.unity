@@ -740,6 +740,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2347996067239279715, guid: 457d311edd6458e45b944aa4739bff22,
+        type: 3}
+      propertyPath: onEnableAnimation
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347996067239279715, guid: 457d311edd6458e45b944aa4739bff22,
+        type: 3}
+      propertyPath: spawnAnimations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347996067239279715, guid: 457d311edd6458e45b944aa4739bff22,
+        type: 3}
+      propertyPath: onEnableAnimations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347996067239279715, guid: 457d311edd6458e45b944aa4739bff22,
+        type: 3}
+      propertyPath: onEnableAnimations.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347996067239279715, guid: 457d311edd6458e45b944aa4739bff22,
+        type: 3}
+      propertyPath: onEnableAnimations.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2743080442810081590, guid: 457d311edd6458e45b944aa4739bff22,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -794,6 +819,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743080443272491625, guid: 457d311edd6458e45b944aa4739bff22,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743080443272491625, guid: 457d311edd6458e45b944aa4739bff22,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743080443272491625, guid: 457d311edd6458e45b944aa4739bff22,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743080443272491625, guid: 457d311edd6458e45b944aa4739bff22,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743080443272491625, guid: 457d311edd6458e45b944aa4739bff22,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2743080443363456712, guid: 457d311edd6458e45b944aa4739bff22,
         type: 3}

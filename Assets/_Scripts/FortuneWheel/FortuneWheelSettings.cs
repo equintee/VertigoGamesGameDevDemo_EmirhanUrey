@@ -58,6 +58,7 @@ public class FortuneWheelSettings : MonoBehaviour
         //TODO: Change ease in first rotation animation.
         await fortuneWheelBase.transform.DORotate(new Vector3(0, 0, 30f), 0.8f).SetEase(Ease.InBack).AsyncWaitForCompletion();
         await fortuneWheelBase.transform.DORotate(Vector3.zero, 1.5f).SetEase(Ease.OutElastic).AsyncWaitForCompletion();
+
     }
 
     public void SpinWheel()
