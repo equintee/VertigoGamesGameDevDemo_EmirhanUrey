@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Fortune Wheel Zone Configuration", menuName = "FortuneWheel/Fortune Wheel Zone Configuration", order = 1)]
+[CreateAssetMenu(fileName = "Fortune Wheel Zone Configuration", menuName = "Fortune Wheel/Fortune Wheel Zone Configuration", order = 1)]
 public class FortuneWheelZoneConfiguration : ScriptableObject
 {
     public GameObject fortuneWheelPrefab;
+    public FortuneWheelReward[] zoneRewards;
     public GameObject rewardCardPrefab;
 
-    public FortuneWheelZoneRewardConfiguration[] zoneRewards;
-    [Range(0, int.MaxValue)] public int deadZoneCount;
+    [Range(0, 100)] public int bombZoneCount;
 
 
     #region Editor Validation
@@ -19,37 +19,11 @@ public class FortuneWheelZoneConfiguration : ScriptableObject
             Debug.LogError($"Fortune Wheel Prefab is not assigned on {name}.");
         else
         {
-            FortuneWheelSettings fortuneWheelSettings = fortuneWheelPrefab.GetComponent<FortuneWheelSettings>();
-            deadZoneCount = Mathf.Clamp(deadZoneCount, 0, fortuneWheelSettings.fortuneWheelSlotTransforms.Length);
+            FortuneWheelManager fortuneWheelSettings = fortuneWheelPrefab.GetComponent<FortuneWheelManager>();
+            bombZoneCount = Mathf.Clamp(bombZoneCount, 0, fortuneWheelSettings.fortuneWheelSlotTransforms.Length);
         }
-            
 
-        if (rewardCardPrefab == null)
-            Debug.LogError($"Reward Card Prefab is not assigned on {name}.");
-
-
-        for(int i = 0; i < zoneRewards.Length; i++)
-        {
-            FortuneWheelZoneRewardConfiguration reward = zoneRewards[i];
-            if (reward.itemTexture == null)
-                Debug.LogError($"Item texture not assigned on Element {i} on {name}");
-            else
-                reward.itemTextureAspectRatio = (float)reward.itemTexture.width / reward.itemTexture.height;
-
-            reward.minimumAmount = Mathf.Min(reward.minimumAmount, reward.maximumAmount);
-            reward.maximumAmount = Mathf.Max(reward.minimumAmount, reward.maximumAmount);
-
-            zoneRewards[i] = reward;
-        }
+        //TODO: Error shown if bombZone is greater than 0 and sprite is not assigned.
     }
     #endregion
-}
-
-[System.Serializable]
-public struct FortuneWheelZoneRewardConfiguration
-{
-    public Texture2D itemTexture;
-    [HideInInspector] public float itemTextureAspectRatio; //Avoiding to calculate aspect ratio in runtime. Gets assigned on OnValidate().
-    [Range(0, int.MaxValue)] public int minimumAmount;
-    [Range(0, int.MaxValue)] public int maximumAmount;
 }

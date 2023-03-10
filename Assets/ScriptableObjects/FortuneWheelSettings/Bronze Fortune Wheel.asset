@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 580df4ff8673c6149b81cac597104daf, type: 3}
-  m_Name: Fortune Wheel Zone Configuration
+  m_Name: Bronze Fortune Wheel
   m_EditorClassIdentifier: 
-  fortuneWheelPrefab: {fileID: 0}
-  rewardCardPrefab: {fileID: 0}
+  fortuneWheelPrefab: {fileID: 5719259689698484452, guid: 457d311edd6458e45b944aa4739bff22,
+    type: 3}
   zoneRewards:
-  - itemTexture: {fileID: 2800000, guid: 7fb836448f1fbcc458bd5bb939f2cf7d, type: 3}
-    itemTextureAspectRatio: 1.9069767
-    minimumAmount: 10
-    maximumAmount: 102
+  - {fileID: 11400000, guid: 6cdeeed247b1c49489ab2c932a37374e, type: 2}
+  - {fileID: 11400000, guid: e3ae7d5c15754be4ab1355894fe9bc8d, type: 2}
+  rewardCardPrefab: {fileID: 0}
+  bombZoneCount: 2

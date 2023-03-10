@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebc5a30113300a44fabb281522b54442, type: 3}
-  m_Name: Item
+  m_Script: {fileID: 11500000, guid: 95fdbc9c668a6de47a92b2e00eb48a26, type: 3}
+  m_Name: Granade_M67
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 0}
-  itemSpriteAspectRatio: 0
+  id: 4
+  itemSprite: {fileID: 21300000, guid: 83c132ce2c9902449a06ce797b3439b2, type: 3}
+  itemTextureAspectRatio: 1

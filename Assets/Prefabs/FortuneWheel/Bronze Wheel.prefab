@@ -2378,7 +2378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2253792558855791268}
-  - component: {fileID: 2347996067239279715}
+  - component: {fileID: 5775560258807997068}
   m_Layer: 5
   m_Name: Bronze Wheel
   m_TagString: Untagged
@@ -2409,7 +2409,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 485, y: 485}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2347996067239279715
+--- !u!114 &5775560258807997068
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2418,11 +2418,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5719259689698484452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a5098ceefb72c4092f2a6d0baeefd8, type: 3}
+  m_Script: {fileID: 11500000, guid: b8f5c9831ed64ff4fb32345b56b606a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fortuneWheelBase: {fileID: 2743080443272491624}
-  fortuneWheelSpinButton: {fileID: 2743080443197829416}
+  _fortuneWheelBase: {fileID: 2743080443272491624}
+  _fortuneWheelSpinButton: {fileID: 2743080443197829416}
   fortuneWheelSlotTransforms:
   - {fileID: 2743080444540293931}
   - {fileID: 2743080442573919546}
@@ -2433,7 +2433,7 @@ MonoBehaviour:
   - {fileID: 2743080444553368352}
   - {fileID: 2743080443246311064}
   cardPrefab: {fileID: 0}
-  spinEvents:
+  endOfSpinEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8197900371977000493
