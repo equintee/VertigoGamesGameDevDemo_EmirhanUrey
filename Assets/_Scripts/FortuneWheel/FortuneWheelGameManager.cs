@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class FortuneWheelGameManager : MonoBehaviour
 {
     [Header("Base Game Settings")]
@@ -14,46 +15,29 @@ public class FortuneWheelGameManager : MonoBehaviour
     [Header("Bonus Game Settings")]
     public SpecialZoneSettings[] specialZoneSettings;
 
+    [Header("UI & Buttons")]
+    public GameObject winUI;
+    public Button collectButton;
+    public Button contunieButton;
+    public GameObject loseUI;
+    public Button restartButton;
+    public Button reviveButton;
+
     private RectTransform _rectTransform;
     private int _currentZone = 1;
-    private FortuneWheelManager _currentFortuneWheelSettings;
+    private FortuneWheelManager _currentFortuneWheelManager;
+    private FortuneWheelZoneConfiguration _currentFortuneWheelZoneConfiguration;
+    private CardController _currentCardShown;
 
     #region Editor Validation
-    /* private void OnValidate()
+     private void OnValidate()
      {
-         //CheckFortuneWheelConfigurationSettings();
+        collectButton.onClick.AddListener(ShowRewards);
+        contunieButton.onClick.AddListener(NextZone);
+        restartButton.onClick.AddListener(RestartGame);
+        reviveButton.onClick.AddListener(Revive);
      }
 
-     private void CheckFortuneWheelConfigurationSettings()
-     {
-         //To check if configurations are not set.
-         if (bonusFortuneWheelConfigurations.Length == 0)
-         {
-             Debug.LogError("Fortune Wheel Apperance list is empty");
-             return;
-         }
-
-         //To check if configurations has null field.
-         bool isThereNullField = false;
-         for(int i = 0; i < bonusFortuneWheelConfigurations.Length; i++)
-         {
-             if (bonusFortuneWheelConfigurations[i].bonusFortuneWheelPrefab == null)
-             {
-                 Debug.LogError($"Fortune Wheel Prefab are not assigned at Element {i} in FortuneWheelManager script.");
-                 isThereNullField = true;
-             }
-
-             if(bonusFortuneWheelConfigurations[i].apperanceFrequency <= 0)
-             {
-                 Debug.LogError($"Apperance frequency has to be greater than 0 at Element {i} in FortuneWheelManager script.");
-                 isThereNullField = true;
-             }
-         }
-
-         if (isThereNullField)
-             return;
-
-     }*/
 
     #endregion
     private void Awake()
@@ -63,11 +47,11 @@ public class FortuneWheelGameManager : MonoBehaviour
     }
     public void InitalizeFortuneWheel()
     {
-        FortuneWheelZoneConfiguration fortuneWheelZoneConfiguration = GetCurrentZone();
-        FortuneWheelManager fortuneWheelManager = Instantiate(fortuneWheelZoneConfiguration.fortuneWheelPrefab, _rectTransform.position, Quaternion.identity, transform).GetComponent<FortuneWheelManager>();
-        fortuneWheelManager.SetItemsOnWheel(fortuneWheelZoneConfiguration, bomb);
+        _currentFortuneWheelZoneConfiguration = GetCurrentZone();
+        _currentFortuneWheelManager = Instantiate(_currentFortuneWheelZoneConfiguration.fortuneWheelPrefab, _rectTransform.position, Quaternion.identity, transform).GetComponent<FortuneWheelManager>();
+        _currentFortuneWheelManager.SetItemsOnWheel(_currentFortuneWheelZoneConfiguration, bomb);
 
-        fortuneWheelManager.endOfSpinEvent.AddListener(GiveReward);
+        _currentFortuneWheelManager.endOfSpinEvent.AddListener(GiveReward);
 
     }
     public FortuneWheelZoneConfiguration GetCurrentZone()
@@ -89,11 +73,38 @@ public class FortuneWheelGameManager : MonoBehaviour
         if(reward.itemData.id == bomb.itemData.id)
         {
             Instantiate(bombCardPrefab, _rectTransform.position, Quaternion.identity, transform);
+            loseUI.SetActive(true);
         }
         else
         {
-            Debug.Log($"{reward.quantity} {reward.itemData.name}");
+            _currentCardShown = Instantiate(_currentFortuneWheelZoneConfiguration.rewardCardPrefab, _rectTransform.position, Quaternion.identity, transform).GetComponent<CardController>();
+            _currentCardShown.InitializeCard(reward.itemData, reward.quantity);
+            winUI.SetActive(true);
         }
+    }
+
+    public void ShowRewards()
+    {
+
+    }
+
+    public void NextZone()
+    {
+        Destroy(_currentFortuneWheelManager.gameObject);
+        Destroy(_currentCardShown.gameObject);
+        _currentZone++;
+        InitalizeFortuneWheel();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Revive()
+    {
+        //Decrement gold(10x)
+        NextZone();
     }
 }
 
