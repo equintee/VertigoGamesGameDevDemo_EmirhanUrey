@@ -90,6 +90,11 @@ public class FortuneWheelGameManager : MonoBehaviour
         if(reward.itemData.id == bomb.itemData.id)
         {
             //show lose UI
+            Debug.Log("bomb poof");
+        }
+        else
+        {
+            Debug.Log($"{reward.quantity} {reward.itemData.name}");
         }
     }
 }
