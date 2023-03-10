@@ -19,6 +19,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 17a67cdaaa7691d4f95ecdfd6d3cee38, type: 2}
   - {fileID: 11400000, guid: da9ec159b97b50342abca486a16baaf2, type: 2}
   - {fileID: 11400000, guid: 36dcd677980d8db4f8530e490c8db70f, type: 2}
-  rewardCardPrefab: {fileID: 5748600638692748632, guid: 2c99d19c527655445ae8636af7a074b3,
+  rewardCardPrefab: {fileID: 5748600638692748632, guid: 41359c24160bbce46bba5b0206d6e06e,
     type: 3}
   bombZoneCount: 0

@@ -20,4 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aa1dfddc913d27e48abce56107ab47fa, type: 2}
   rewardCardPrefab: {fileID: 5748600638692748632, guid: 81a332e4e3ffc0442a3c9bf61b46c00b,
     type: 3}
-  bombZoneCount: 1
+  bombZoneCount: 2

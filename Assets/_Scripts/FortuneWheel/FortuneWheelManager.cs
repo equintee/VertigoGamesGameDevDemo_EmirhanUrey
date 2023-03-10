@@ -22,8 +22,13 @@ public class FortuneWheelManager : MonoBehaviour
     [Tooltip("Slots of fortune wheel.")]
     public Transform[] fortuneWheelSlotTransforms;
 
-    [HideInInspector] public UnityEvent<FortuneWheelReward> endOfSpinEvent;
+    [Header("Animation Settings")]
+    [SerializeField] private Vector3 awakeInitialScale = new Vector3(0.5f, 0.5f, 0.5f);
+    [SerializeField] private Vector3 awakeEndingScale = Vector3.one;
+    [SerializeField] private float awakeAnimationDuration = 1f;
+    [SerializeField] private float spinAnimationDuration = 5f;
 
+    [HideInInspector] public UnityEvent<FortuneWheelReward> endOfSpinEvent;
     private FortuneWheelReward[] _slotRewards;
     private int _slotCount => fortuneWheelSlotTransforms.Length;
 
@@ -37,17 +42,15 @@ public class FortuneWheelManager : MonoBehaviour
 
     private async void Awake()
     {
-
         _slotRewards = new FortuneWheelReward[_slotCount];
 
         //TODO: Make separate method or scriptable object for animation.
-        _fortuneWheelBase.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        _fortuneWheelSpinButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        _fortuneWheelBase.transform.localScale = awakeInitialScale;
+        _fortuneWheelSpinButton.transform.localScale = awakeInitialScale;
 
-        _fortuneWheelBase.transform.DOScale(Vector3.one, 1f).SetEase(Ease.InOutBack).AsyncWaitForCompletion();
-        _fortuneWheelSpinButton.transform.DOScale(Vector3.one, 1f).SetEase(Ease.InOutBack).AsyncWaitForCompletion();
+        _fortuneWheelBase.transform.DOScale(awakeEndingScale, awakeAnimationDuration).SetEase(Ease.InOutBack);
+        _fortuneWheelSpinButton.transform.DOScale(awakeEndingScale, awakeAnimationDuration).SetEase(Ease.InOutBack);
 
-        //TODO: Change ease in first rotation animation.
         await _fortuneWheelBase.transform.DORotate(new Vector3(0, 0, 30f), 0.8f).SetEase(Ease.InBack).AsyncWaitForCompletion();
         await _fortuneWheelBase.transform.DORotate(Vector3.zero, 1.5f).SetEase(Ease.OutElastic).AsyncWaitForCompletion();
 
@@ -60,13 +63,13 @@ public class FortuneWheelManager : MonoBehaviour
     {
         _fortuneWheelSpinButton.GetComponent<Button>().interactable = false;
 
-        int pickedAngle = Random.Range(0, 360) + 0 * 360;
-        await _fortuneWheelBase.transform.DOLocalRotate(new Vector3(0, 0, pickedAngle), 1f, RotateMode.FastBeyond360).AsyncWaitForCompletion();
+        int pickedAngle = Random.Range(0,360) + 5 * 360;
+        await _fortuneWheelBase.transform.DOLocalRotate(new Vector3(0, 0, pickedAngle), spinAnimationDuration, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).AsyncWaitForCompletion();
 
         int closestSlotIndex = GetClosestSlotIndex(pickedAngle);
         float closestSlotAngle = fortuneWheelSlotTransforms[closestSlotIndex].localRotation.eulerAngles.z;
 
-        await _fortuneWheelBase.transform.DOLocalRotate(new Vector3(0, 0, closestSlotAngle), 0.5f).AsyncWaitForCompletion();
+        await _fortuneWheelBase.transform.DOLocalRotate(new Vector3(0, 0, closestSlotAngle), 0.5f).SetEase(Ease.OutBounce).AsyncWaitForCompletion();
 
         endOfSpinEvent.Invoke(_slotRewards[(360 - (int)closestSlotAngle) / (360 / _slotCount)]);
     }

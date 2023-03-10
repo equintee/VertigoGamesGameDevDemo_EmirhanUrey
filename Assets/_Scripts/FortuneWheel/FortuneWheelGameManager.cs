@@ -32,10 +32,8 @@ public class FortuneWheelGameManager : MonoBehaviour
     #region Editor Validation
      private void OnValidate()
      {
-        collectButton.onClick.AddListener(ShowRewards);
-        contunieButton.onClick.AddListener(NextZone);
-        restartButton.onClick.AddListener(RestartGame);
-        reviveButton.onClick.AddListener(Revive);
+        
+
      }
 
 
@@ -43,6 +41,12 @@ public class FortuneWheelGameManager : MonoBehaviour
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>(); //TODO: Cache in editor.
+
+        collectButton.onClick.AddListener(ShowRewards);
+        contunieButton.onClick.AddListener(NextZone);
+        restartButton.onClick.AddListener(RestartGame);
+        reviveButton.onClick.AddListener(Revive);
+
         InitalizeFortuneWheel();
     }
     public void InitalizeFortuneWheel()
@@ -72,7 +76,7 @@ public class FortuneWheelGameManager : MonoBehaviour
     {
         if(reward.itemData.id == bomb.itemData.id)
         {
-            Instantiate(bombCardPrefab, _rectTransform.position, Quaternion.identity, transform);
+            _currentCardShown = Instantiate(bombCardPrefab, _rectTransform.position, Quaternion.identity, transform).GetComponent<CardController>();
             loseUI.SetActive(true);
         }
         else
@@ -85,13 +89,14 @@ public class FortuneWheelGameManager : MonoBehaviour
 
     public void ShowRewards()
     {
-
+        HideButtons();
     }
 
     public void NextZone()
     {
-        Destroy(_currentFortuneWheelManager.gameObject);
         Destroy(_currentCardShown.gameObject);
+        Destroy(_currentFortuneWheelManager.gameObject);
+        HideButtons();
         _currentZone++;
         InitalizeFortuneWheel();
     }
@@ -105,6 +110,12 @@ public class FortuneWheelGameManager : MonoBehaviour
     {
         //Decrement gold(10x)
         NextZone();
+    }
+
+    public void HideButtons()
+    {
+        winUI.SetActive(false);
+        loseUI.SetActive(false);
     }
 }
 
