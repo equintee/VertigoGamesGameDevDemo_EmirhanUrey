@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 5748600638692748635}
   - component: {fileID: 5102620261731348459}
   - component: {fileID: 7371312683674254065}
+  - component: {fileID: -6455943013343692066}
   m_Layer: 5
   m_Name: SilverCardPrefab
   m_TagString: Untagged
@@ -243,6 +244,26 @@ MonoBehaviour:
   _itemDisplayImage: {fileID: 3108681416944408104}
   _itemQuantityText: {fileID: 7933366684684706083}
   _aspectRatioFitter: {fileID: 9122034143891119439}
+--- !u!114 &-6455943013343692066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748600638692748632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 110
+  m_PreferredHeight: 110
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &5748600638782064545
 GameObject:
   m_ObjectHideFlags: 0

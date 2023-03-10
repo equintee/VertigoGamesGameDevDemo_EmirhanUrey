@@ -63,15 +63,16 @@ public class FortuneWheelManager : MonoBehaviour
     {
         _fortuneWheelSpinButton.GetComponent<Button>().interactable = false;
 
-        int pickedAngle = Random.Range(0,360) + 5 * 360;
+        int pickedAngle = 10;
         await _fortuneWheelBase.transform.DOLocalRotate(new Vector3(0, 0, pickedAngle), spinAnimationDuration, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).AsyncWaitForCompletion();
 
         int closestSlotIndex = GetClosestSlotIndex(pickedAngle);
         float closestSlotAngle = fortuneWheelSlotTransforms[closestSlotIndex].localRotation.eulerAngles.z;
 
         await _fortuneWheelBase.transform.DOLocalRotate(new Vector3(0, 0, closestSlotAngle), 0.5f).SetEase(Ease.OutBounce).AsyncWaitForCompletion();
-
-        endOfSpinEvent.Invoke(_slotRewards[(360 - (int)closestSlotAngle) / (360 / _slotCount)]);
+        int rewardIndex = (360 - (int)closestSlotAngle) / (360 / _slotCount);
+        rewardIndex = rewardIndex == _slotRewards.Length ? 0 : rewardIndex;
+        endOfSpinEvent.Invoke(_slotRewards[rewardIndex]);
     }
 
     public int GetClosestSlotIndex(int pickedAngle)
@@ -132,7 +133,7 @@ public class FortuneWheelManager : MonoBehaviour
         imageTransform.GetComponent<Image>().sprite = randomReward.itemData.itemSprite;
         imageTransform.GetComponent<AspectRatioFitter>().aspectRatio = randomReward.itemData.itemTextureAspectRatio;
 
-        textTransform.GetComponent<TextMeshProUGUI>().text = quantity.ToString();
+        textTransform.GetComponent<TextMeshProUGUI>().text = $"X{quantity}";
 
     }
 }

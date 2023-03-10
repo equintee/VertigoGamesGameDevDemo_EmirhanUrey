@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 2bcdc775de4b5fc4aa5cca3ceb705238, type: 2}
   minimumAmount: 0
-  maximumAmount: 3
+  maximumAmount: 0
   quantity: 0
   rewardEvent:
     m_PersistentCalls:

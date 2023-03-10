@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 public class FortuneWheelGameManager : MonoBehaviour
 {
     [Header("Base Game Settings")]
@@ -22,19 +23,34 @@ public class FortuneWheelGameManager : MonoBehaviour
     public GameObject loseUI;
     public Button restartButton;
     public Button reviveButton;
+    public Button collectUIRestartButton;
+    public TextMeshProUGUI stageText;
+    public RectTransform _collectedCards;
 
     private RectTransform _rectTransform;
     private int _currentZone = 1;
+    private int CurrentZone { get { return _currentZone; } set { stageText.text = $"STAGE {value}"; _currentZone = value; } }
     private FortuneWheelManager _currentFortuneWheelManager;
     private FortuneWheelZoneConfiguration _currentFortuneWheelZoneConfiguration;
     private CardController _currentCardShown;
-
     #region Editor Validation
      private void OnValidate()
      {
-        
+        if (winUI == null)
+            Debug.LogWarning("winUI is not set");
+        var buttons = winUI.GetComponentsInChildren<Button>();
+        collectButton = buttons[0];
+        contunieButton = buttons[1];
 
-     }
+        if (loseUI == null)
+            Debug.LogWarning("loseUI is not set");
+        buttons = loseUI.GetComponentsInChildren<Button>();
+        restartButton = buttons[0];
+        reviveButton = buttons[1];
+
+
+
+    }
 
 
     #endregion
@@ -47,6 +63,7 @@ public class FortuneWheelGameManager : MonoBehaviour
         restartButton.onClick.AddListener(RestartGame);
         reviveButton.onClick.AddListener(Revive);
 
+        collectUIRestartButton.onClick.AddListener(RestartGame);
         InitalizeFortuneWheel();
     }
     public void InitalizeFortuneWheel()
@@ -65,7 +82,7 @@ public class FortuneWheelGameManager : MonoBehaviour
 
         for(int i = specialZoneSettings.Length - 1; i > -1; i--)
         {
-            if (_currentZone % specialZoneSettings[i].apperanceFrequency == 0)
+            if (CurrentZone % specialZoneSettings[i].apperanceFrequency == 0)
                 return specialZoneSettings[i].specialZoneConfiguration;
         }
 
@@ -90,14 +107,17 @@ public class FortuneWheelGameManager : MonoBehaviour
     public void ShowRewards()
     {
         HideButtons();
+        _currentCardShown.GetComponent<RectTransform>().SetParent(_collectedCards, false);
+        _collectedCards.transform.parent.gameObject.SetActive(true);
     }
 
     public void NextZone()
     {
-        Destroy(_currentCardShown.gameObject);
+        _currentCardShown.GetComponent<RectTransform>().SetParent(_collectedCards, false);
+        Destroy(_currentCardShown);
         Destroy(_currentFortuneWheelManager.gameObject);
         HideButtons();
-        _currentZone++;
+        CurrentZone++;
         InitalizeFortuneWheel();
     }
 

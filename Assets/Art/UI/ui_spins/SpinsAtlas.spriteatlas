@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ItemsAtlas
+  m_Name: SpinsAtlas
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -16,14 +16,14 @@ SpriteAtlas:
       maxTextureSize: 2048
       textureCompression: 0
       filterMode: 1
-      generateMipMaps: 1
+      generateMipMaps: 0
       readable: 0
       crunchedCompression: 0
       sRGB: 1
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 2048
+      m_MaxTextureSize: 1024
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 2
@@ -44,33 +44,27 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: a0b45a36f45d3194ca90de8a034fec99, type: 3}
+    - {fileID: 102900000, guid: af30feabe090ca74faf33c0955d0e1ed, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: b7f9b712a7218e642941cc5a013b48d3, type: 3}
-  - {fileID: 21300000, guid: 3f0fad52361b4f24d8976b76b3bfca8d, type: 3}
-  - {fileID: 21300000, guid: cf740223f4788cb4ca2e14199cabb2a4, type: 3}
-  - {fileID: 21300000, guid: 6af55833ca56c1546a532b522253ff4c, type: 3}
-  - {fileID: 21300000, guid: 7fb836448f1fbcc458bd5bb939f2cf7d, type: 3}
-  - {fileID: 21300000, guid: 853e86d5c1b5fed4ba3581818420e942, type: 3}
-  - {fileID: 21300000, guid: 932dec6952df27c4f9ff52c255b8f1f4, type: 3}
-  - {fileID: 21300000, guid: e4148edb67cfd0a4ba40864541d602d7, type: 3}
-  - {fileID: 21300000, guid: ebd6d01d1a0572d44a22dec7a99e64dd, type: 3}
-  - {fileID: 21300000, guid: 83c132ce2c9902449a06ce797b3439b2, type: 3}
+  - {fileID: 21300000, guid: 39144870e76726e4880abd21ae3c7619, type: 3}
+  - {fileID: 21300000, guid: 48046d2379d4aab4bb97a1fb950ab281, type: 3}
+  - {fileID: 21300000, guid: 4f77bbb58e5f57e47a107884cbd1d08c, type: 3}
+  - {fileID: 21300000, guid: 67d0c287bdc832c48bec8a53b99ae757, type: 3}
+  - {fileID: 21300000, guid: bc6af888f174d1049b74b9c28a429aec, type: 3}
+  - {fileID: 21300000, guid: fe463c6b3e73fc14ab89f9125ea35956, type: 3}
+  - {fileID: 21300000, guid: db7a494edf2298d43af1b1161cdb818f, type: 3}
   m_PackedSpriteNamesToIndex:
-  - UI_icon_gold_pile
-  - ui_icon_render_cons_medkit_easter
-  - ui_icon_render_cons_healthshot_2_adrenaline
-  - ui_icon_render_t_cons_grenade_emp
-  - UI_icon_cash
-  - ui_icon_render_cons_grenade_electric
-  - ui_icon_render_cons_grenade_snowball
-  - ui_icon_render_t_cons_c4
-  - ui_icon_render_cons_healthshot_2
-  - ui_icon_render_cons_grenade_m67
+  - UI_spin_bronze_indicator
+  - UI_spin_silver_indicator
+  - UI_spin_bronze_base
+  - UI_spin_golden_base
+  - UI_spin_generic_button
+  - UI_spin_silver_base
+  - UI_spin_golden_indicator
   m_RenderDataMap: {}
-  m_Tag: ItemsAtlas
+  m_Tag: SpinsAtlas
   m_IsVariant: 0
