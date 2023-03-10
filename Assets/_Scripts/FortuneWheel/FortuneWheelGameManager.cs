@@ -87,7 +87,10 @@ public class FortuneWheelGameManager : MonoBehaviour
 
     private void GiveReward(FortuneWheelReward reward)
     {
-
+        if(reward.itemData.id == bomb.itemData.id)
+        {
+            //show lose UI
+        }
     }
 }
 

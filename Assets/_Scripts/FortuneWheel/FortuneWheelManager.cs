@@ -29,10 +29,8 @@ public class FortuneWheelManager : MonoBehaviour
 
     [HideInInspector] public UnityEvent<FortuneWheelReward> endOfSpinEvent;
 
-    private AspectRatioFitter _aspectRatioFitter;
     private FortuneWheelReward[] _slotRewards;
     private int _slotCount => fortuneWheelSlotTransforms.Length;
-    private bool _isSpinning;
 
     #region Editor Validation
     private void OnValidate()
@@ -42,8 +40,10 @@ public class FortuneWheelManager : MonoBehaviour
 
     #endregion
 
-    private async void OnEnable()
+    private async void Awake()
     {
+
+        _slotRewards = new FortuneWheelReward[_slotCount];
 
         //TODO: Make separate method or scriptable object for animation.
         _fortuneWheelBase.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
@@ -58,6 +58,7 @@ public class FortuneWheelManager : MonoBehaviour
 
         //To ensure wheel gets intracted when initial animations complete.
         _fortuneWheelSpinButton.GetComponent<Button>().onClick.AddListener(SpinWheel);
+
     }
 
     public async void SpinWheel()
@@ -71,6 +72,8 @@ public class FortuneWheelManager : MonoBehaviour
         float closestSlotAngle = fortuneWheelSlotTransforms[closestSlotIndex].localRotation.eulerAngles.z;
 
         await _fortuneWheelBase.transform.DORotate(new Vector3(0, 0, closestSlotAngle), 0.5f).AsyncWaitForCompletion();
+
+        endOfSpinEvent.Invoke(_slotRewards[closestSlotIndex]);
     }
 
     public int GetClosestSlotIndex(int pickedAngle)
@@ -100,29 +103,31 @@ public class FortuneWheelManager : MonoBehaviour
     public void SetItemsOnWheel(FortuneWheelZoneConfiguration fortuneWheelZoneConfiguration, FortuneWheelReward bomb)
     {
         int rewardCount = _slotCount - fortuneWheelZoneConfiguration.bombZoneCount;
-        List<int> shuffledSlotIndexes = Enumerable.Range(1, _slotCount).OrderBy(x => Random.Range(0f, 1f)).ToList();
-        int slotIndex = 0;
-        while (slotIndex < rewardCount)
+        List<int> shuffledSlotIndexes = Enumerable.Range(0, _slotCount).OrderBy(x => Random.Range(0f, 1f)).ToList();
+        int shuffledSlotIndex = 0;
+
+        while (shuffledSlotIndex < rewardCount)
         {
             FortuneWheelReward randomReward = fortuneWheelZoneConfiguration.zoneRewards[Random.Range(0, fortuneWheelZoneConfiguration.zoneRewards.Length)];
-            SetItemOnWheel(slotIndex, randomReward);
-            slotIndex++;
+            SetItemOnWheel(shuffledSlotIndexes[shuffledSlotIndex], randomReward);
+            shuffledSlotIndex++;
         }
 
-        while (slotIndex < _slotCount)
+        while (shuffledSlotIndex < _slotCount)
         {
-            SetItemOnWheel(slotIndex, bomb);
-            slotIndex++;
+            SetItemOnWheel(shuffledSlotIndexes[shuffledSlotIndex], bomb);
+            shuffledSlotIndex++;
         }
     }
 
     private void SetItemOnWheel(int index, FortuneWheelReward randomReward)
     {
         int quantity = Random.Range(randomReward.minimumAmount, randomReward.maximumAmount + 1);
+        randomReward = Instantiate(randomReward);
+        randomReward.quantity = quantity;
+        _slotRewards[index] = randomReward;
 
         Transform fortuneWheelSlot = fortuneWheelSlotTransforms[index];
-
-        //TODO: Editor validation to check if componenets have relative things.
         Transform imageTransform = fortuneWheelSlot.GetChild(0);
         Transform textTransform = fortuneWheelSlot.GetChild(1);
 

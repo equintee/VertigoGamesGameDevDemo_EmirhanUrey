@@ -7,6 +7,7 @@ public class FortuneWheelReward : ScriptableObject
     public ItemData itemData;
     [Range(0, 100)] public int minimumAmount;
     [Range(0, 100)] public int maximumAmount;
+    [HideInInspector] public int quantity;
     [HideInInspector] public UnityEvent rewardEvent;
 
     private void OnValidate()

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f72fa7c6243ae409e6630a5d276b34, type: 3}
   m_Name: Bomb
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 38e1e4bb9f2472245b78f6e50ffbaf89, type: 3}
+  itemData: {fileID: 11400000, guid: 2bcdc775de4b5fc4aa5cca3ceb705238, type: 2}
   minimumAmount: 0
-  maximumAmount: 2
+  maximumAmount: 3
+  quantity: 0
   rewardEvent:
     m_PersistentCalls:
       m_Calls: []
-  itemTextureAspectRatio: 1
