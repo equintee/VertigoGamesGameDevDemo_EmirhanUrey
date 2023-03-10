@@ -67,15 +67,18 @@ public class FortuneWheelManager : MonoBehaviour
         int pickedAngle = Random.Range(0, 360) + 5 * 360;
         await _fortuneWheelBase.transform.DORotate(new Vector3(0, 0, pickedAngle), 5f, RotateMode.FastBeyond360).AsyncWaitForCompletion();
 
-        float closestSlotAngle = GetClosestSlot(pickedAngle);
+        int closestSlotIndex = GetClosestSlotIndex(pickedAngle);
+        float closestSlotAngle = fortuneWheelSlotTransforms[closestSlotIndex].localRotation.eulerAngles.z;
 
         await _fortuneWheelBase.transform.DORotate(new Vector3(0, 0, closestSlotAngle), 0.5f).AsyncWaitForCompletion();
     }
 
-    public float GetClosestSlot(int pickedAngle)
+    public int GetClosestSlotIndex(int pickedAngle)
     {
-        Transform closestSlotTransform = fortuneWheelSlotTransforms[0];
+        int closestSlotIndex = 0;
+        Transform closestSlotTransform = fortuneWheelSlotTransforms[closestSlotIndex];
         float closestAngle = Mathf.Abs(Mathf.DeltaAngle(pickedAngle, closestSlotTransform.localRotation.eulerAngles.z));
+
 
         for(int i = 0; i < _slotCount; i++)
         {
@@ -83,12 +86,12 @@ public class FortuneWheelManager : MonoBehaviour
             float angleDiffrence = Mathf.Abs(Mathf.DeltaAngle(pickedAngle, slotToCheck.localRotation.eulerAngles.z));
             if (angleDiffrence < closestAngle)
             {
-                closestSlotTransform = slotToCheck;
+                closestSlotIndex = i;
                 closestAngle = angleDiffrence;
             }
         }
 
-        return closestSlotTransform.localRotation.eulerAngles.z;
+        return closestSlotIndex;
 
     }
 
