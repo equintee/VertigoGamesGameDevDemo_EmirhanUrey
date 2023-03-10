@@ -63,7 +63,7 @@ public class FortuneWheelManager : MonoBehaviour
     {
         _fortuneWheelSpinButton.GetComponent<Button>().interactable = false;
 
-        int pickedAngle = 10;
+        int pickedAngle = Random.Range(0,360) + 5 * 360;
         await _fortuneWheelBase.transform.DOLocalRotate(new Vector3(0, 0, pickedAngle), spinAnimationDuration, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).AsyncWaitForCompletion();
 
         int closestSlotIndex = GetClosestSlotIndex(pickedAngle);
