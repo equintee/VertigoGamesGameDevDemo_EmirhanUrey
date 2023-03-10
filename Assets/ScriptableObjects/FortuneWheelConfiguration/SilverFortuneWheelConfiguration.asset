@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580df4ff8673c6149b81cac597104daf, type: 3}
+  m_Name: SilverFortuneWheelConfiguration
+  m_EditorClassIdentifier: 
+  fortuneWheelPrefab: {fileID: 5719259689698484452, guid: e61e33e982b6b044397b42c5f3f16dcf,
+    type: 3}
+  zoneRewards:
+  - {fileID: 11400000, guid: f9a1759834f23364a8b4a3cd54f5c8cd, type: 2}
+  - {fileID: 11400000, guid: aa1dfddc913d27e48abce56107ab47fa, type: 2}
+  - {fileID: 11400000, guid: 3d0569d3723a4484dafafc80c47e94dd, type: 2}
+  - {fileID: 11400000, guid: a04031017be9b784c961042c140daa51, type: 2}
+  - {fileID: 11400000, guid: 83f5bb5a418dba146a880c122e488d74, type: 2}
+  - {fileID: 11400000, guid: ef85052fb172ee24e836556dff904cac, type: 2}
+  rewardCardPrefab: {fileID: 5748600638692748632, guid: 1cea552588c14b248a475ff8c472a256,
+    type: 3}
+  bombZoneCount: 0

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Reward_Currency_Cash
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 841803406cb35314f84882b42822c242, type: 2}
-  minimumAmount: 33
-  maximumAmount: 84
+  minimumAmount: 60
+  maximumAmount: 100
+  quantity: 0
   rewardEvent:
     m_PersistentCalls:
       m_Calls: []
-  itemTextureAspectRatio: 0

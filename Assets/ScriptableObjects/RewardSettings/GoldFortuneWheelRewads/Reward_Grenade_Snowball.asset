@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f72fa7c6243ae409e6630a5d276b34, type: 3}
+  m_Name: Reward_Grenade_Snowball
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: b23a411acde59374c9445c8c86d203c9, type: 2}
+  minimumAmount: 13
+  maximumAmount: 35
+  quantity: 0
+  rewardEvent:
+    m_PersistentCalls:
+      m_Calls: []

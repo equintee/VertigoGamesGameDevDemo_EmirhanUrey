@@ -8,12 +8,11 @@ public class FortuneWheelGameManager : MonoBehaviour
     [Header("Base Game Settings")]
     public GameObject baseGameFortuneWheelPrefab;
     public FortuneWheelZoneConfiguration baseGameFortuneWheelConfiguration;
+    public FortuneWheelReward bomb;
+    public GameObject bombCardPrefab;
 
     [Header("Bonus Game Settings")]
     public SpecialZoneSettings[] specialZoneSettings;
-
-    [Header("Bomb Sprite")]
-    public FortuneWheelReward bomb;
 
     private RectTransform _rectTransform;
     private int _currentZone = 1;
@@ -89,8 +88,7 @@ public class FortuneWheelGameManager : MonoBehaviour
     {
         if(reward.itemData.id == bomb.itemData.id)
         {
-            //show lose UI
-            Debug.Log("bomb poof");
+            Instantiate(bombCardPrefab, _rectTransform.position, Quaternion.identity, transform);
         }
         else
         {

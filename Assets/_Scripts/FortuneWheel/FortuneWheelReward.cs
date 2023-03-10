@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "Fortune Wheel Item", menuName = "Fortune Wheel/Fortune Wheel Item")]
+[CreateAssetMenu(fileName = "Fortune Wheel Reward", menuName = "Fortune Wheel/Fortune Wheel Reward")]
 public class FortuneWheelReward : ScriptableObject
 {
     public ItemData itemData;

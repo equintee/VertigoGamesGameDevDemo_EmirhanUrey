@@ -1019,8 +1019,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4f77bbb58e5f57e47a107884cbd1d08c, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fe463c6b3e73fc14ab89f9125ea35956, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2380,7 +2380,7 @@ GameObject:
   - component: {fileID: 2253792558855791268}
   - component: {fileID: 5775560258807997068}
   m_Layer: 5
-  m_Name: Bronze Wheel
+  m_Name: SilverFortuneWheelPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2432,7 +2432,8 @@ MonoBehaviour:
   - {fileID: 2743080443536273468}
   - {fileID: 2743080444553368352}
   - {fileID: 2743080443246311064}
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 5748600638692748632, guid: 1cea552588c14b248a475ff8c472a256,
+    type: 3}
   endOfSpinEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2502,7 +2503,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 39144870e76726e4880abd21ae3c7619, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48046d2379d4aab4bb97a1fb950ab281, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

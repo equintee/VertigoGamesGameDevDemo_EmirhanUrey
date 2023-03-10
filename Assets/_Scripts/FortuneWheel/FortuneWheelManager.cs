@@ -22,11 +22,6 @@ public class FortuneWheelManager : MonoBehaviour
     [Tooltip("Slots of fortune wheel.")]
     public Transform[] fortuneWheelSlotTransforms;
 
-    [Header("Card Prefab")]
-    [Tooltip("Reward card made for fortune wheel.")]
-    public GameObject cardPrefab;
-
-
     [HideInInspector] public UnityEvent<FortuneWheelReward> endOfSpinEvent;
 
     private FortuneWheelReward[] _slotRewards;
@@ -73,7 +68,7 @@ public class FortuneWheelManager : MonoBehaviour
 
         await _fortuneWheelBase.transform.DOLocalRotate(new Vector3(0, 0, closestSlotAngle), 0.5f).AsyncWaitForCompletion();
 
-        endOfSpinEvent.Invoke(_slotRewards[(360 - (int)closestSlotAngle) / 45]);
+        endOfSpinEvent.Invoke(_slotRewards[(360 - (int)closestSlotAngle) / (360 / _slotCount)]);
     }
 
     public int GetClosestSlotIndex(int pickedAngle)
