@@ -771,7 +771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 522091124}
   m_Layer: 5
-  m_Name: Buttons
+  m_Name: FortuneWheel_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -992,8 +992,9 @@ GameObject:
   - component: {fileID: 795180541}
   - component: {fileID: 795180543}
   - component: {fileID: 795180542}
+  - component: {fileID: 795180544}
   m_Layer: 5
-  m_Name: Scroller
+  m_Name: FortuneWheel_Scroller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1089,6 +1090,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795180537}
   m_CullTransparentMesh: 1
+--- !u!114 &795180544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795180537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6fb05489c1b9e6419639844671fc484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collectedCards: {fileID: 1413705206}
+  restartButton: {fileID: 1764567705}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1758,7 +1773,7 @@ GameObject:
   - component: {fileID: 1413705207}
   - component: {fileID: 1413705208}
   m_Layer: 5
-  m_Name: CollectedCards
+  m_Name: FortuneWheel_Scroller_CollectedCards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2150,8 +2165,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1606098166}
+  - component: {fileID: 1606098167}
   m_Layer: 5
-  m_Name: WinUI
+  m_Name: FortuneWheel_WinUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2179,6 +2195,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1606098167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606098165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338cffa7a82b6bb428b273af36a4bc5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectButton: {fileID: 1791347286}
+  continueButton: {fileID: 1927696491}
+  fortuneWheelGameManager: {fileID: 636506975963537465}
 --- !u!1 &1622960756
 GameObject:
   m_ObjectHideFlags: 0
@@ -2266,8 +2297,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1682349459}
+  - component: {fileID: 1682349460}
   m_Layer: 5
-  m_Name: LoseUI
+  m_Name: FortuneWheel_LoseUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2295,6 +2327,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1682349460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682349458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb75b5b3b40d3e44a8a83a511899b0e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restartButton: {fileID: 45696286}
+  reviveButton: {fileID: 1186643177}
+  fortuneWheelGameManager: {fileID: 636506975963537465}
 --- !u!1 &1764567703
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,7 +2355,7 @@ GameObject:
   - component: {fileID: 1764567706}
   - component: {fileID: 1764567705}
   m_Layer: 5
-  m_Name: CollectUIRestartButton
+  m_Name: FortuneWheel_Scroller_RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2952,6 +2999,7 @@ MonoBehaviour:
   bomb: {fileID: 11400000, guid: 52c02bf12a1a81640924684a349f0e92, type: 2}
   bombCardPrefab: {fileID: 5748600638692748632, guid: a16c90015c94e7b4ebe70d2f8ec05cfd,
     type: 3}
+  reviveCost: 10
   specialZoneSettings:
   - specialZoneConfiguration: {fileID: 11400000, guid: 81759d25a2290fc41b69c9faa9e62876,
       type: 2}
@@ -2960,11 +3008,8 @@ MonoBehaviour:
       type: 2}
     apperanceFrequency: 30
   winUI: {fileID: 1606098165}
-  collectButton: {fileID: 1791347286}
-  contunieButton: {fileID: 1927696491}
   loseUI: {fileID: 1682349458}
-  restartButton: {fileID: 45696286}
-  reviveButton: {fileID: 1186643177}
+  rewardCardScroller: {fileID: 795180537}
   collectUIRestartButton: {fileID: 1764567705}
   stageText: {fileID: 113611030}
   _collectedCards: {fileID: 1413705206}

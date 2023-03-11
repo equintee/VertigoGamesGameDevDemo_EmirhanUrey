@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (!PlayerPrefs.HasKey(PLAYERPREFS_PLAYERCASH))
-            PlayerPrefs.SetInt(PLAYERPREFS_PLAYERCASH, 0);
+            PlayerPrefs.SetInt(PLAYERPREFS_PLAYERCASH, 100);
 
         
     }

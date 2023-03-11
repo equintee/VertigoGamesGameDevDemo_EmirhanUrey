@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FortuneWheelWinUIController : MonoBehaviour
+public interface IRewardUI
 {
-    
+    public void ShowUI();
+    public void HideUI();
 }

@@ -19,11 +19,13 @@ public class FortuneWheelGameManager : MonoBehaviour
 
     [Header("UI & Buttons")]
     public GameObject winUI;
-    public Button collectButton;
-    public Button contunieButton;
     public GameObject loseUI;
-    public Button restartButton;
-    public Button reviveButton;
+    public GameObject rewardCardScroller;
+
+    private IRewardUI winUIController;
+    private IRewardUI loseUIController;
+    private FortuneWheelRewardScrollerController rewardCardScrollerController;
+
     public Button collectUIRestartButton;
     public TextMeshProUGUI stageText;
     public RectTransform _collectedCards;
@@ -35,25 +37,14 @@ public class FortuneWheelGameManager : MonoBehaviour
     private FortuneWheelZoneConfiguration _currentFortuneWheelZoneConfiguration;
     private CardController _currentCardShown;
     #region Editor Validation
+
      private void OnValidate()
      {
-        if (winUI == null)
-            Debug.LogWarning("winUI is not set");
-        else
-        {
-            var buttons = winUI.GetComponentsInChildren<Button>();
-            collectButton = buttons[0];
-            contunieButton = buttons[1];
-        }
+        if (winUI == null || !winUI.TryGetComponent(out winUIController))
+            Debug.LogWarning($"winUI is not set on {gameObject.name}");
 
-        if (loseUI == null)
-            Debug.LogWarning("loseUI is not set");
-        else
-        {
-            var buttons = loseUI.GetComponentsInChildren<Button>();
-            restartButton = buttons[0];
-            reviveButton = buttons[1];
-        }
+        if (loseUI == null || !loseUI.TryGetComponent(out loseUIController))
+            Debug.LogWarning($"loseUI is not set {gameObject.name}");
 
     }
 
@@ -63,11 +54,9 @@ public class FortuneWheelGameManager : MonoBehaviour
     {
         _rectTransform = GetComponent<RectTransform>(); //TODO: Cache in editor.
 
-        collectButton.onClick.AddListener(ShowRewards);
-        contunieButton.onClick.AddListener(NextZone);
-        restartButton.onClick.AddListener(RestartGame);
-        reviveButton.onClick.AddListener(Revive);
-
+        loseUI.TryGetComponent(out loseUIController);
+        winUI.TryGetComponent(out winUIController);
+        rewardCardScroller.TryGetComponent(out rewardCardScrollerController);
         collectUIRestartButton.onClick.AddListener(RestartGame);
         InitalizeFortuneWheel();
     }
@@ -98,22 +87,23 @@ public class FortuneWheelGameManager : MonoBehaviour
     {
         if(reward.itemData.id == bomb.itemData.id)
         {
+            loseUIController.ShowUI();
             _currentCardShown = Instantiate(bombCardPrefab, _rectTransform.position, Quaternion.identity, transform).GetComponent<CardController>();
-            loseUI.SetActive(true);
+            Debug.Log(reward.quantity);
         }
         else
         {
             _currentCardShown = Instantiate(_currentFortuneWheelZoneConfiguration.rewardCardPrefab, _rectTransform.position, Quaternion.identity, transform).GetComponent<CardController>();
             _currentCardShown.InitializeCard(reward.itemData, reward.quantity);
-            winUI.SetActive(true);
+            winUIController.ShowUI();
+            Debug.Log(reward.quantity);
         }
     }
 
     public void ShowRewards()
     {
-        HideButtons();
-        _currentCardShown.GetComponent<RectTransform>().SetParent(_collectedCards, false);
-        _collectedCards.transform.parent.gameObject.SetActive(true);
+        rewardCardScrollerController.AddCardToScroller(_currentCardShown.GetComponent<RectTransform>());
+        rewardCardScrollerController.ShowUI();
     }
 
     public void NextZone()
@@ -121,7 +111,6 @@ public class FortuneWheelGameManager : MonoBehaviour
         _currentCardShown.GetComponent<RectTransform>().SetParent(_collectedCards, false);
         Destroy(_currentCardShown);
         Destroy(_currentFortuneWheelManager.gameObject);
-        HideButtons();
         CurrentZone++;
         InitalizeFortuneWheel();
     }
@@ -134,14 +123,11 @@ public class FortuneWheelGameManager : MonoBehaviour
     public void Revive()
     {
         GameManager.Instance.PlayerCash -= reviveCost;
+        loseUIController.HideUI();
+
         NextZone();
     }
 
-    public void HideButtons()
-    {
-        winUI.SetActive(false);
-        loseUI.SetActive(false);
-    }
 }
 
 
