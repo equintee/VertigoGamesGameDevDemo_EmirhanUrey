@@ -12,6 +12,7 @@ public class FortuneWheelGameManager : MonoBehaviour
     public FortuneWheelZoneConfiguration baseGameFortuneWheelConfiguration;
     public FortuneWheelReward bomb;
     public GameObject bombCardPrefab;
+    public int reviveCost;
 
     [Header("Bonus Game Settings")]
     public SpecialZoneSettings[] specialZoneSettings;
@@ -38,17 +39,21 @@ public class FortuneWheelGameManager : MonoBehaviour
      {
         if (winUI == null)
             Debug.LogWarning("winUI is not set");
-        var buttons = winUI.GetComponentsInChildren<Button>();
-        collectButton = buttons[0];
-        contunieButton = buttons[1];
+        else
+        {
+            var buttons = winUI.GetComponentsInChildren<Button>();
+            collectButton = buttons[0];
+            contunieButton = buttons[1];
+        }
 
         if (loseUI == null)
             Debug.LogWarning("loseUI is not set");
-        buttons = loseUI.GetComponentsInChildren<Button>();
-        restartButton = buttons[0];
-        reviveButton = buttons[1];
-
-
+        else
+        {
+            var buttons = loseUI.GetComponentsInChildren<Button>();
+            restartButton = buttons[0];
+            reviveButton = buttons[1];
+        }
 
     }
 
@@ -128,7 +133,7 @@ public class FortuneWheelGameManager : MonoBehaviour
 
     public void Revive()
     {
-        //Decrement gold(10x)
+        GameManager.Instance.PlayerCash -= reviveCost;
         NextZone();
     }
 

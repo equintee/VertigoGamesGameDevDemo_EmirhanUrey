@@ -9,7 +9,6 @@ using DG.Tweening;
 using System.Linq;
 using TMPro;
 
-//[RequireComponent(typeof(AspectRatioFitter))]
 public class FortuneWheelManager : MonoBehaviour
 {
 
