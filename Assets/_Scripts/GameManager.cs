@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     #region Singleton Field
     public static GameManager Instance;
     #endregion
+
     #region Player Prefs Keys
     private const string PLAYERPREFS_PLAYERCASH = "PlayerCash";
     #endregion

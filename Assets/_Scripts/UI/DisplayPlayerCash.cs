@@ -11,9 +11,10 @@ public class DisplayPlayerCash : MonoBehaviour
     {
         playerCashText = GetComponent<TextMeshProUGUI>();
     }
-    private void OnEnable()
+    private void Start()
     {
         GameManager.Instance.OnPlayerCashUpdate.AddListener(UpdatePlayerCashText);
+        UpdatePlayerCashText(GameManager.Instance.PlayerCash);
     }
 
     private void OnDisable()
