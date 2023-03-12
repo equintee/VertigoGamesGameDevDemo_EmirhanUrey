@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 45696287}
   - component: {fileID: 45696286}
   m_Layer: 5
-  m_Name: RestartButton
+  m_Name: LoseUI_RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -771,7 +771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 522091124}
   m_Layer: 5
-  m_Name: FortuneWheel_UI
+  m_Name: FortuneWheel_EndGame_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -812,7 +812,7 @@ GameObject:
   - component: {fileID: 571666862}
   - component: {fileID: 571666861}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: FortuneWheelGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -994,7 +994,7 @@ GameObject:
   - component: {fileID: 795180542}
   - component: {fileID: 795180544}
   m_Layer: 5
-  m_Name: FortuneWheel_Scroller
+  m_Name: FortuneWheelGame_RewardScroller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1574,7 +1574,7 @@ GameObject:
   - component: {fileID: 1186643178}
   - component: {fileID: 1186643177}
   m_Layer: 5
-  m_Name: ReviveButton
+  m_Name: LoseUI_ReviveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1696,7 +1696,7 @@ GameObject:
   - component: {fileID: 1273213235}
   - component: {fileID: 1273213234}
   m_Layer: 5
-  m_Name: StageUI
+  m_Name: FortuneWheelGame_Stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1709,7 +1709,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273213232}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1720,7 +1720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -53}
+  m_AnchoredPosition: {x: 0, y: -53.000183}
   m_SizeDelta: {x: 300, y: 90}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1273213234
@@ -2054,7 +2054,7 @@ GameObject:
   - component: {fileID: 1483162435}
   - component: {fileID: 1483162434}
   m_Layer: 5
-  m_Name: BackgroundPanel
+  m_Name: FortuneWheelGame_Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2129,7 +2129,7 @@ GameObject:
   - component: {fileID: 1524035125}
   - component: {fileID: 636506975963537465}
   m_Layer: 5
-  m_Name: FortuneWheelManager
+  m_Name: FortuneWheelGame_Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2222,7 +2222,7 @@ GameObject:
   - component: {fileID: 1622960759}
   - component: {fileID: 1622960758}
   m_Layer: 5
-  m_Name: CashDisplay
+  m_Name: FortuneWheelGame_CashDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2614,7 +2614,7 @@ GameObject:
   - component: {fileID: 1791347287}
   - component: {fileID: 1791347286}
   m_Layer: 5
-  m_Name: CollectButton
+  m_Name: WinUI_CollectButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2736,7 +2736,7 @@ GameObject:
   - component: {fileID: 1927696492}
   - component: {fileID: 1927696491}
   m_Layer: 5
-  m_Name: ContinueButton
+  m_Name: WinUI_ContinueButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
