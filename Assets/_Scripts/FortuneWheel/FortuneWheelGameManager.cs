@@ -95,6 +95,8 @@ public class FortuneWheelGameManager : MonoBehaviour
         {
             _currentCardShown = Instantiate(_currentFortuneWheelZoneConfiguration.rewardCardPrefab, _rectTransform.position, Quaternion.identity, transform).GetComponent<CardController>();
             _currentCardShown.InitializeCard(reward.itemData, reward.quantity);
+            rewardCardScrollerController.AddCardToScroller(_currentCardShown.GetComponent<RectTransform>());
+
             winUIController.ShowUI();
             Debug.Log(reward.quantity);
         }
@@ -102,14 +104,11 @@ public class FortuneWheelGameManager : MonoBehaviour
 
     public void ShowRewards()
     {
-        rewardCardScrollerController.AddCardToScroller(_currentCardShown.GetComponent<RectTransform>());
         rewardCardScrollerController.ShowUI();
     }
 
     public void NextZone()
     {
-        _currentCardShown.GetComponent<RectTransform>().SetParent(_collectedCards, false);
-        Destroy(_currentCardShown);
         Destroy(_currentFortuneWheelManager.gameObject);
         CurrentZone++;
         InitalizeFortuneWheel();
@@ -122,9 +121,11 @@ public class FortuneWheelGameManager : MonoBehaviour
 
     public void Revive()
     {
-        GameManager.Instance.PlayerCash -= reviveCost;
-        loseUIController.HideUI();
+        if (GameManager.Instance.PlayerCash <= 0)
+            GameManager.Instance.PlayerCash = 100;
 
+        GameManager.Instance.PlayerCash -= reviveCost;
+        Destroy(_currentCardShown.gameObject);
         NextZone();
     }
 
