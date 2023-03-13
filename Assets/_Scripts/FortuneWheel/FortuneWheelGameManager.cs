@@ -138,12 +138,14 @@ public class FortuneWheelGameManager : MonoBehaviour
 
     public void ShowRewards()
     {
+        Destroy(_currentCardShown.gameObject);
         rewardCardScrollerController.ShowUI();
     }
 
     public void NextZone()
     {
         Destroy(_currentFortuneWheelManager.gameObject);
+        Destroy(_currentCardShown.gameObject);
         CurrentZone++;
         InitalizeFortuneWheel();
     }
