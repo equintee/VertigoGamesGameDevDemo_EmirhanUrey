@@ -8,6 +8,7 @@ public class FortuneWheelLoseUI : MonoBehaviour, IRewardUI
 {
     public Button restartButton;
     public Button reviveButton;
+
     [SerializeField] private FortuneWheelGameManager fortuneWheelGameManager;
     private void OnValidate()
     {
@@ -26,15 +27,15 @@ public class FortuneWheelLoseUI : MonoBehaviour, IRewardUI
         if (fortuneWheelGameManager == null)
             Debug.LogError($"Fortune Wheel Manager is not set on {gameObject.name}");
     }
-
-    private void Start()
+    public void InitalizeButtons()
     {
         restartButton.onClick.AddListener(fortuneWheelGameManager.RestartGame);
-        reviveButton.onClick.AddListener(fortuneWheelGameManager.Revive);
+        reviveButton.onClick.AddListener(fortuneWheelGameManager.RevivePlayer);
 
         restartButton.onClick.AddListener(HideUI);
         reviveButton.onClick.AddListener(HideUI);
     }
+
     public void HideUI()
     {
         reviveButton.GetComponentInChildren<TextMeshProUGUI>().text = "REVIVE 10X";
@@ -43,12 +44,12 @@ public class FortuneWheelLoseUI : MonoBehaviour, IRewardUI
 
     public void ShowUI()
     {
-        if(GameManager.Instance.PlayerCash <= 0)
+        if(fortuneWheelGameManager.PlayerCash <= 0)
         {
             reviveButton.GetComponentInChildren<TextMeshProUGUI>().text = "GET 100X";
         }
         gameObject.SetActive(true);
     }
 
-
+    
 }

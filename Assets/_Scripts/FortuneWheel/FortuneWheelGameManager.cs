@@ -21,24 +21,44 @@ public class FortuneWheelGameManager : MonoBehaviour
     public GameObject winUI;
     public GameObject loseUI;
     public GameObject rewardCardScroller;
-
-    private IRewardUI winUIController;
-    private IRewardUI loseUIController;
-    private FortuneWheelRewardScrollerController rewardCardScrollerController;
-
     public Button collectUIRestartButton;
     public TextMeshProUGUI stageText;
     public RectTransform _collectedCards;
 
+    #region Private Variables
+    private IRewardUI winUIController;
+    private IRewardUI loseUIController;
+    private FortuneWheelRewardScrollerController rewardCardScrollerController;
+    private int _playerCash = 71;
     private RectTransform _rectTransform;
     private int _currentZone = 1;
     private int CurrentZone { get { return _currentZone; } set { stageText.text = $"STAGE {value}"; _currentZone = value; } }
     private FortuneWheelManager _currentFortuneWheelManager;
     private FortuneWheelZoneConfiguration _currentFortuneWheelZoneConfiguration;
     private CardController _currentCardShown;
+    #endregion
+
+    #region Events
+    public UnityEvent<int> OnPlayerCashUpdate;
+    #endregion
+    
+    #region Public Fields
+    public int PlayerCash
+    {
+        get
+        {
+            return _playerCash;
+        }
+        set
+        {
+            UpdatePlayerCash(value);
+        }
+    }
+    #endregion
+
     #region Editor Validation
 
-     private void OnValidate()
+    private void OnValidate()
      {
         if (winUI == null || !winUI.TryGetComponent(out winUIController))
             Debug.LogWarning($"winUI is not set on {gameObject.name}");
@@ -57,8 +77,27 @@ public class FortuneWheelGameManager : MonoBehaviour
         loseUI.TryGetComponent(out loseUIController);
         winUI.TryGetComponent(out winUIController);
         rewardCardScroller.TryGetComponent(out rewardCardScrollerController);
-        collectUIRestartButton.onClick.AddListener(RestartGame);
         InitalizeFortuneWheel();
+
+        loseUIController.InitalizeButtons();
+        winUIController.InitalizeButtons();
+        rewardCardScrollerController.InitalizeButtons();
+
+        PlayerCash = 51;
+
+
+    }
+
+    private void Start()
+    {
+        try
+        {
+            OnPlayerCashUpdate.Invoke(PlayerCash);
+        }
+        catch(System.Exception e)
+        {
+            Debug.Log("null");
+        }
     }
     public void InitalizeFortuneWheel()
     {
@@ -119,16 +158,22 @@ public class FortuneWheelGameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void Revive()
+    public void RevivePlayer()
     {
-        if (GameManager.Instance.PlayerCash <= 0)
-            GameManager.Instance.PlayerCash = 100;
+        if (PlayerCash <= 0)
+            PlayerCash = 56;
 
-        GameManager.Instance.PlayerCash -= reviveCost;
-        Destroy(_currentCardShown.gameObject);
+        PlayerCash -= reviveCost;
         NextZone();
+        Destroy(_currentCardShown.gameObject);
     }
 
+    private bool UpdatePlayerCash(int value)
+    {
+        _playerCash = value;
+        OnPlayerCashUpdate?.Invoke(_playerCash);
+        return true;
+    }
 }
 
 

@@ -6,21 +6,23 @@ using TMPro;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class DisplayPlayerCash : MonoBehaviour
 {
-    private TextMeshProUGUI playerCashText;
+    [SerializeField] private TextMeshProUGUI playerCashText;
+    [SerializeField] private FortuneWheelGameManager fortuneWheelGameManager;
     private void OnValidate()
     {
         playerCashText = GetComponent<TextMeshProUGUI>();
+        fortuneWheelGameManager = FindObjectOfType<FortuneWheelGameManager>();
     }
-    private void Start()
+    private void OnEnable()
     {
-        GameManager.Instance.OnPlayerCashUpdate.AddListener(UpdatePlayerCashText);
-        UpdatePlayerCashText(GameManager.Instance.PlayerCash);
+        fortuneWheelGameManager.OnPlayerCashUpdate.AddListener(UpdatePlayerCashText);
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnPlayerCashUpdate.RemoveListener(UpdatePlayerCashText);
+        fortuneWheelGameManager.OnPlayerCashUpdate.RemoveListener(UpdatePlayerCashText);
     }
+
 
     private void UpdatePlayerCashText(int value)
     {

@@ -6,4 +6,6 @@ public interface IRewardUI
 {
     public void ShowUI();
     public void HideUI();
+
+    public void InitalizeButtons();
 }

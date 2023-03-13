@@ -27,7 +27,7 @@ public class FortuneWheelWinUIController : MonoBehaviour, IRewardUI
             Debug.LogError($"Fortune Wheel Manager is not set on {gameObject.name}");
     }
 
-    private void Start()
+    public void InitalizeButtons()
     {
         collectButton.onClick.AddListener(fortuneWheelGameManager.ShowRewards);
         continueButton.onClick.AddListener(fortuneWheelGameManager.NextZone);
@@ -35,7 +35,6 @@ public class FortuneWheelWinUIController : MonoBehaviour, IRewardUI
         collectButton.onClick.AddListener(HideUI);
         continueButton.onClick.AddListener(HideUI);
     }
-
     public void HideUI()
     {
         gameObject.SetActive(false);

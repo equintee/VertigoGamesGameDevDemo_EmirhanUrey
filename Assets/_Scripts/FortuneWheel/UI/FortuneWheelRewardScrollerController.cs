@@ -17,7 +17,7 @@ public class FortuneWheelRewardScrollerController : MonoBehaviour, IRewardUI
         restartButton = GetComponentInChildren<Button>();
     }
 
-    private void Awake()
+    public void InitalizeButtons()
     {
         restartButton.onClick.AddListener(FindObjectOfType<FortuneWheelGameManager>().RestartGame);
     }
