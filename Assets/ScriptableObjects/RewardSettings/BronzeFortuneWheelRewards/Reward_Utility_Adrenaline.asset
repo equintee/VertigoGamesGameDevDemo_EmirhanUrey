@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45f72fa7c6243ae409e6630a5d276b34, type: 3}
-  m_Name: Reward_Utility_Medkit
+  m_Name: Reward_Utility_Adrenaline
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 9621a84af2dbd9144a8e88fc3bb2a47e, type: 2}
+  itemData: {fileID: 11400000, guid: 4732ec470aebbf34da47313dad188c0b, type: 2}
   minimumAmount: 1
-  maximumAmount: 13
+  maximumAmount: 12
   quantity: 0
   rewardEvent:
     m_PersistentCalls:

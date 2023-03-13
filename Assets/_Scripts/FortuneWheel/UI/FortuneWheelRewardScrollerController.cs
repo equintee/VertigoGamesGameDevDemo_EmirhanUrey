@@ -21,9 +21,9 @@ public class FortuneWheelRewardScrollerController : MonoBehaviour, IRewardUI
     {
         restartButton.onClick.AddListener(FindObjectOfType<FortuneWheelGameManager>().RestartGame);
     }
-    public void AddCardToScroller(RectTransform card)
+    public void AddCardToScroller(GameObject card)
     {
-        card.SetParent(_collectedCards, false);
+        card.GetComponent<RectTransform>().SetParent(_collectedCards, false);
     }
     public void HideUI()
     {

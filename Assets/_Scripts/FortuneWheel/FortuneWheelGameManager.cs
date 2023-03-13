@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 public class FortuneWheelGameManager : MonoBehaviour
 {
+    #region Serialized Fields
     [Header("Base Game Settings")]
     public GameObject baseGameFortuneWheelPrefab;
     public FortuneWheelZoneConfiguration baseGameFortuneWheelConfiguration;
@@ -24,6 +25,7 @@ public class FortuneWheelGameManager : MonoBehaviour
     public Button collectUIRestartButton;
     public TextMeshProUGUI stageText;
     public RectTransform _collectedCards;
+    #endregion
 
     #region Private Variables
     private IRewardUI winUIController;
@@ -39,7 +41,7 @@ public class FortuneWheelGameManager : MonoBehaviour
     #endregion
 
     #region Events
-    public UnityEvent<int> OnPlayerCashUpdate;
+    [HideInInspector] public UnityEvent<int> OnPlayerCashUpdate;
     #endregion
     
     #region Public Fields
@@ -83,21 +85,14 @@ public class FortuneWheelGameManager : MonoBehaviour
         winUIController.InitalizeButtons();
         rewardCardScrollerController.InitalizeButtons();
 
-        PlayerCash = 51;
+        PlayerCash = 100;
 
 
     }
 
     private void Start()
     {
-        try
-        {
-            OnPlayerCashUpdate.Invoke(PlayerCash);
-        }
-        catch(System.Exception e)
-        {
-            Debug.Log("null");
-        }
+        OnPlayerCashUpdate.Invoke(PlayerCash);
     }
     public void InitalizeFortuneWheel()
     {
@@ -134,7 +129,7 @@ public class FortuneWheelGameManager : MonoBehaviour
         {
             _currentCardShown = Instantiate(_currentFortuneWheelZoneConfiguration.rewardCardPrefab, _rectTransform.position, Quaternion.identity, transform).GetComponent<CardController>();
             _currentCardShown.InitializeCard(reward.itemData, reward.quantity);
-            rewardCardScrollerController.AddCardToScroller(_currentCardShown.GetComponent<RectTransform>());
+            rewardCardScrollerController.AddCardToScroller(Instantiate(_currentCardShown.gameObject));
 
             winUIController.ShowUI();
             Debug.Log(reward.quantity);

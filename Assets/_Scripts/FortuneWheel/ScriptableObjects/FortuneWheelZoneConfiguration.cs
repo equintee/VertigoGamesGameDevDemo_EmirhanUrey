@@ -23,7 +23,6 @@ public class FortuneWheelZoneConfiguration : ScriptableObject
             bombZoneCount = Mathf.Clamp(bombZoneCount, 0, fortuneWheelSettings.fortuneWheelSlotTransforms.Length);
         }
 
-        //TODO: Error shown if bombZone is greater than 0 and sprite is not assigned.
     }
     #endregion
 }
